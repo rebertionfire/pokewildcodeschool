@@ -1,0 +1,21 @@
+
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.btn{
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column; 
+  
+}
+
+.btn > p {
+    font-size: calc(10px + 2vmin);
+    font-size: 2rem;
+    color: blue;
+
+}
