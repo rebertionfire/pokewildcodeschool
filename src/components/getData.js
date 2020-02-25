@@ -1,42 +1,20 @@
-import React from "react";
+import React from "react"
 
-import axios from "axios";
 
-export default class PokemonList extends React.Component {
-  state = {
-    pokemons: [],
-    pokemon1: "",
-    pokemon2: ""
-  };
 
-  componentDidMount() {
-    axios.get(`https://pokeapi.co/api/v2/pokemon/`).then(res => {
-      const pokemons = res.data.results;
-      this.setState({ pokemons });
-    });
+export const handleSelectedPokemon = event => {
+
+    const selectedPokemon = event.target.value
+    if (this.state.Pokemon1 !== null) {
+      this.setState({
+        Pokemon2: selectedPokemon
+      });
+      
+    } else {
+      this.setState({
+        Pokemon1: selectedPokemon
+      });
+    }
+
+    this.getPokemonData(this.getPokemonFromIndex(selectedPokemon))
   }
-
-  render() {
-    return (
-      <div>
-        <select>
-          {this.state.pokemons.map((pokemon,index) => (
-            <option value={pokemon.name} onClick= {()=>{
-              const chosenPokemon = this.state.pokemons[index];
-              alert('Hello')
-
-              this.setState({
-                pokemon1 : chosenPokemon
-                
-              })
-            }
-            }>{pokemon.name}</option>
-          ))}
-        </select>
-        <button className="btn">
-          <p>Battle!</p>
-        </button>
-      </div>
-    );
-  }
-}

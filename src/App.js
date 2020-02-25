@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo from "./pokemon.svg";
 import "./App.css";
 import LandingPage from "./components/landingpage";
-import PokemonList from "./components/getData";
+import PokemonList from "./components/PokemonList";
 
 class App extends Component {
   constructor(props){

@@ -1,7 +1,25 @@
 import React, { Component } from "react";
 import "./landingpage.css"
+import PokemonList from "./PokemonList";
+
 
 class LandingPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      
+    
+    };
+    this.handleStartBattle = this.handleStartBattle.bind(this);
+
+  }
+
+handleStartBattle(){
+    console.log()
+}
+
+
+
   
   render(){
 
@@ -24,7 +42,9 @@ class LandingPage extends Component {
           www.flaticon.com
         </a>
       </p>
-
+      <button className="btn" onClick = {this.handleStartBattle}>
+          <p>Battle!</p>
+        </button>
     </section>
   );
   }

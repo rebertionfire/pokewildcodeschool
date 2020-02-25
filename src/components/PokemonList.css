@@ -1,0 +1,12 @@
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.row > div {
+    margin: 10vh;
+    display: grid;
+}
+.row > div > img{
+    width: 25vh;
+}
