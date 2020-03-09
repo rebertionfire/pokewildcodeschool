@@ -4,6 +4,7 @@ import axios from "axios";
 import "./PokemonList.css";
 import Pokemon1 from "./pokemon1";
 import Pokemon2 from "./pokemon2";
+import BattleContext from "./battleContext";
 
 export default class PokemonList extends React.Component {
   constructor(props) {
@@ -13,10 +14,13 @@ export default class PokemonList extends React.Component {
       Pokemon1: null,
       Pokemon2: null,
       pokemon1Data: null,
-      pokemon2Data: null
+      pokemon2Data: null,
+      battle: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.pokemonChosen = this.pokemonChosen.bind(this);
   }
+  
   handleChange(event) {
     const selectedPokemon = event.target.value;
     if (this.state.Pokemon1 !== null) {
@@ -32,6 +36,7 @@ export default class PokemonList extends React.Component {
     this.getPokemonData(this.getPokemonFromIndex(selectedPokemon));
   }
 
+
   getPokemonFromIndex = index => {
     return this.state.pokemons[index];
   };
@@ -41,6 +46,7 @@ export default class PokemonList extends React.Component {
       const pokemons = res.data.results;
       this.setState({ pokemons });
     });
+    this.pokemonChosen();
   }
 
   getPokemonData(pokemon) {
@@ -58,10 +64,23 @@ export default class PokemonList extends React.Component {
     });
   }
 
+  pokemonChosen(){
+    if(this.state.Pokemon1 === "2"){
+      console.log('doiis escohlidos')
+      this.setState({battle:true})
+    }else{
+      return
+    }
+  }
+
   //HTML
   render() {
 
     return (
+      <BattleContext.Provider
+   value={this.state.battle ? true : false}
+>
+      
       <div className="row">
         {this.state.Pokemon1 && (
           <div>
@@ -105,6 +124,7 @@ export default class PokemonList extends React.Component {
           </div>
         )}
       </div>
+      </BattleContext.Provider>
     );
   }
 }

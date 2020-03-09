@@ -1,22 +1,24 @@
 import React, { Component } from "react";
 import "./landingpage.css"
 import PokemonList from "./PokemonList";
+import BattleContext from "./battleContext"
 
 
 class LandingPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
-    
+      battle : false
+
     };
-    this.handleStartBattle = this.handleStartBattle.bind(this);
+    this.handleStartbattle = this.handleStartbattle.bind(this);
 
   }
 
-handleStartBattle(){
-    console.log()
+handleStartbattle(){
+  this.battle ? console.log('entering battle') : console.log('choose your pokemons')
 }
+
 
 
 
@@ -24,7 +26,10 @@ handleStartBattle(){
   render(){
 
   return (
-    <section>
+    <BattleContext.Consumer>
+        {value => <section>
+      {value ? <div>Battle is On</div> :
+      <div>
       <div>
         Welcome to PokeWilde Code School, possible with React and PokéAPI
       </div>
@@ -42,10 +47,18 @@ handleStartBattle(){
           www.flaticon.com
         </a>
       </p>
-      <button className="btn" onClick = {this.handleStartBattle}>
-          <p>Battle!</p>
+      <button className="btn" onClick = {this.handleStartbattle}>
+          <p>battle!</p>
         </button>
-    </section>
+        <PokemonList/>
+        </div>}
+
+    </section> }
+        
+
+
+    
+    </BattleContext.Consumer>
   );
   }
 };
